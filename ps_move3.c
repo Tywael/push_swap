@@ -1,43 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ps_move3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yalthaus <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 17:08:47 by yalthaus          #+#    #+#             */
-/*   Updated: 2022/01/18 16:43:37 by yalthaus         ###   ########.fr       */
+/*   Created: 2022/01/18 17:05:20 by yalthaus          #+#    #+#             */
+/*   Updated: 2022/01/18 17:06:04 by yalthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ps_rrr(void)
 {
-	while (*s != (unsigned char)c)
-	{
-		if (*s == 0)
-			return (0);
-		++s;
-	}
-	return ((char *)s);
-}
-
-char	*ft_strjoin(const char *s1, const char *s2)
-{
-	char	*ret;
-	size_t	i;
-	size_t	len;
-
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	ret = malloc(len + 1);
-	if (!ret)
-		return (0);
-	i = 0;
-	while (*s1)
-		ret[i++] = *s1++;
-	while (*s2)
-		ret[i++] = *s2++;
-	ret[i] = 0;
-	return (ret);
+	write(1, "rrr\n", 4);
 }

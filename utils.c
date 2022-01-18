@@ -6,7 +6,7 @@
 /*   By: yalthaus <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:08:27 by yalthaus          #+#    #+#             */
-/*   Updated: 2022/01/11 17:08:41 by yalthaus         ###   ########.fr       */
+/*   Updated: 2022/01/18 16:46:11 by yalthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,14 @@ int	skipspace(char c)
 	return (0);
 }
 
-int	ft_atoi(const	char *str, t_info *info)
+int	ft_strlen(const char *str)
 {
-	int	result;
-	int	sign;
-	int	int_len;
+	int n;
 
-	result = 0;
-	sign = 1;
-	int_len = 0;
-	if (*str == '-')
-	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
-	}
-	while (ft_isdigit(*str))
-	{
-		result = (result * 10) + (*str++ - '0');
-		int_len++;
-	}
-	if (int_len > 10 && sign == 1)
-		error(info);
-	else if (int_len > 10)
-		error(info);
-	return (result * sign);
+	n = 0;
+	while (str++)
+		n++;
+	return (n);
 }
 
 int	ft_isdigit(int c)
@@ -52,6 +35,24 @@ int	ft_isdigit(int c)
 		return (1);
 	else
 		return (0);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	result;
+	int	sign;
+
+	result = 0;
+	sign = 1;
+	if (*str == '-')
+	{
+		if (*str == '-')
+			sign *= -1;
+		str++;
+	}
+	while (ft_isdigit(*str))
+		result = (result * 10) + (*str++ - '0');
+	return (result * sign);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -78,26 +79,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	str[j] = '\0';
 	return (str);
-}
-
-void	same_arg(t_info *info)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 1;
-	while (i < info->argc - 1)
-	{
-		while (j < info->argc)
-		{
-			if (info->first_step[i] == info->first_step[j])
-			{
-				error(info);
-			}
-			j++;
-		}
-		i++;
-		j = i + 1;
-	}
 }
