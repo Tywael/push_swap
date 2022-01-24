@@ -6,7 +6,7 @@
 /*   By: yalthaus <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:56:55 by yalthaus          #+#    #+#             */
-/*   Updated: 2022/01/18 17:12:39 by yalthaus         ###   ########.fr       */
+/*   Updated: 2022/01/24 16:02:57 by yalthaus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,26 @@ typedef struct s_push_swap
 	int	*a;
 	int	*b;
 	int	len;
+	int	move;
+	int	bit;
 }				t_push_swap;
 
 int		print_arr(char *str, int *nbrs, int len);
 int		*chars_to_ints(int len, char **arstr);
 int		ft_atoi(const char *str);
 int		ft_strlen(const char *str);
-void	ps_sa(void);
-void	ps_sb(void);
-void	ps_ss(void);
-void	ps_ra(void);
-void	ps_rb(void);
-void	ps_rr(void);
-void	ps_rra(void);
-void	ps_rrb(void);
-void	ps_rrr(void);
-void	ps_pa(void);
-void	ps_pb(void);
+int		count_stack(int *nbrs, int len);
+void	shift_up(int *nbrs, int len);
+void	shift_down(int *nbrs, int len);
+void	ps_sa(t_push_swap *ps);
+void	ps_sb(t_push_swap *ps);
+void	ps_ss(t_push_swap *ps);
+void	ps_ra(t_push_swap *ps);
+void	ps_rb(t_push_swap *ps);
+void	ps_rr(t_push_swap *ps);
+void	ps_rra(t_push_swap *ps);
+void	ps_rrb(t_push_swap *ps);
+void	ps_rrr(t_push_swap *ps);
+void	ps_pa(t_push_swap *ps);
+void	ps_pb(t_push_swap *ps);
 #endif

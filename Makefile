@@ -6,7 +6,7 @@
 #    By: yalthaus <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 16:48:58 by yalthaus          #+#    #+#              #
-#    Updated: 2022/01/18 17:09:11 by yalthaus         ###   ########.fr        #
+#    Updated: 2022/01/24 10:34:19 by yalthaus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ =	$(SRC:.c=.o)
 CC =	gcc
 RM =	rm -f
 
-CFLAGS =	-Wall -Werror -Wextra
+CFLAGS =	-Wall -Werror -Wextra -g
 
 all:	$(NAME)
 
