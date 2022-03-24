@@ -82,4 +82,7 @@ char	**ft_split(char const *s, char c)
 	return (array);
 }
 
-
+char	**pars(char *arg)
+{
+	
+}

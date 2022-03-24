@@ -124,6 +124,49 @@ void	shift_up(int *nbrs, int len)
 	}
 }
 
+int	ft_perror(void)
+{
+	write(1, "Error\n", 6);
+	return (1);
+}
+
+int	check_max_min(char *str, int isneg)
+{
+	if (*(str + 0) >= 2 + 48)
+		if (*(str + 1) >= 1 + 48)
+			if (*(str + 2) >= 4 + 48)
+				if (*(str + 3) >= 7 + 48)
+					if (*(str + 4) >= 4 + 48)
+						if (*(str + 5) >= 8 + 48)
+							if (*(str + 6) >= 3 + 48)
+								if (*(str + 7) >= 6 + 48)
+									if (*(str + 8) >= 4 + 48)
+										if (*(str + 9 ) >= 7 + 48)
+											return (1);
+	return (0);
+}
+
+int	num_validity(char *str)
+{
+	int	isneg;
+
+	isneg = 0;
+	if (*str == '-')
+	{
+		isneg = 1;
+		str++;
+	}
+	if (check_max_min(str, isneg))
+		return (ft_perror());
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (ft_perror());
+		str++;
+	}
+	return (0);
+}
+
 int	*chars_to_ints(int len, char **arstr)
 {
 	int	*nbrs;
@@ -135,6 +178,11 @@ int	*chars_to_ints(int len, char **arstr)
 		return (NULL);
 	while (++i < len)
 	{
+		if (ft_strlen(arstr[i]) > 10 + *arstr[i] == '-' || num_validity(arstr[i]))
+		{
+			free(nbrs);
+			return (NULL);
+		}
 		nbrs[i] = ft_atoi(arstr[i]);
 	}
 	return (nbrs);
@@ -179,9 +227,11 @@ int	*init_b(int len)
 
 int	algo_3(t_push_swap *ps)
 {
-	int	i;
-
-	i = 0;
+	if (ps->len == 2)
+	{
+		ps_rra(ps);
+		return (0);
+	}
 	if (ps->a[0] > ps->a[1])
 		ps_sa(ps);
 	if (ps->a[1] > ps->a[2])
@@ -239,6 +289,13 @@ void	algo(t_push_swap *ps)
 	all_a(ps);
 }
 
+void	free_ps(t_push_swap *ps)
+{
+	free(ps->nbrs);
+	free(ps->a);
+	free(ps->b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_push_swap	ps;
@@ -246,21 +303,35 @@ int	main(int argc, char **argv)
 
 	i = -1;
 	ps.len = argc - 1;
-	if (argc > 1)
+	if (argc > 2)
+	{
 		if (argc > 2)
 			ps.nbrs = chars_to_ints(ps.len, argv + 1);
+		if (!ps.nbrs)
+			return (0);
+	}
+	else 
+		return (0);
 	if (check_dup(ps.nbrs , ps.len))
-		return (1);
+	{
+		free(ps.nbrs);
+		return (ft_perror());
+	}
 	ps.a = format_ints(ps.nbrs, ps.len);
 	ps.b = init_b(ps.len);
 	ps.move = 0;
 	bit_decal(&ps);
 	if (is_tried(ps.a, ps.len))
+	{
+		free_ps(&ps);
 		return (1);
-	if (ps.len <= 3)
-		return (algo_3(&ps));
-	if (ps.len == 5)
-		return (algo_5(&ps));
-	algo(&ps);
+	}
+	else if (ps.len <= 3)
+		algo_3(&ps);
+	else if (ps.len == 5)
+		algo_5(&ps);
+	else
+		algo(&ps);
+	free_ps(&ps);
 	return (0);
 }

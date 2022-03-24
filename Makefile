@@ -24,7 +24,7 @@ OBJ =	$(SRC:.c=.o)
 CC =	gcc
 RM =	rm -f
 
-CFLAGS =	-Wall -Werror -Wextra -g
+CFLAGS =	-Wall -Wextra -g
 
 all:	$(NAME)
 

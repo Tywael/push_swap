@@ -24,7 +24,7 @@ int	ft_strlen(const char *str)
 	int n;
 
 	n = 0;
-	while (str++)
+	while (*str++)
 		n++;
 	return (n);
 }
