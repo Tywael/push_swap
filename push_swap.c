@@ -100,9 +100,9 @@ int	count_stack(int *nbrs, int len)
 
 void	shift_down(int *nbrs, int len)
 {
-	int	tmp;
+	//int	tmp;
 
-	tmp = len;
+	//tmp = len;
 	if (len > 1 && !nbrs[len - 1])
 	{
 		while (--len)
@@ -118,7 +118,7 @@ void	shift_up(int *nbrs, int len)
 	i = -1;
 	if (len > 1 && !nbrs[0])
 	{
-		while (++i < len)
+		while (++i < len - 1)
 			nbrs[i] = nbrs[i + 1];
 		nbrs[len - 1] = 0;
 	}
@@ -132,16 +132,16 @@ int	ft_perror(void)
 
 int	check_max_min(char *str, int isneg)
 {
-	if (*(str + 0) >= 2 + 48)
-		if (*(str + 1) >= 1 + 48)
-			if (*(str + 2) >= 4 + 48)
-				if (*(str + 3) >= 7 + 48)
-					if (*(str + 4) >= 4 + 48)
-						if (*(str + 5) >= 8 + 48)
-							if (*(str + 6) >= 3 + 48)
-								if (*(str + 7) >= 6 + 48)
-									if (*(str + 8) >= 4 + 48)
-										if (*(str + 9 ) >= 7 + 48)
+	if (*(str + 0) > 2 + 48)
+		if (*(str + 1) > 1 + 48)
+			if (*(str + 2) > 4 + 48)
+				if (*(str + 3) > 7 + 48)
+					if (*(str + 4) > 4 + 48)
+						if (*(str + 5) > 8 + 48)
+							if (*(str + 6) > 3 + 48)
+								if (*(str + 7) > 6 + 48)
+									if (*(str + 8) > 4 + 48)
+										if (*(str + 9 ) > 7 + isneg + 48)
 											return (1);
 	return (0);
 }
@@ -178,7 +178,7 @@ int	*chars_to_ints(int len, char **arstr)
 		return (NULL);
 	while (++i < len)
 	{
-		if (ft_strlen(arstr[i]) > 10 + *arstr[i] == '-' || num_validity(arstr[i]))
+		if (ft_strlen(arstr[i]) > 10 + (*arstr[i] == '-') || num_validity(arstr[i]))
 		{
 			free(nbrs);
 			return (NULL);
@@ -267,7 +267,6 @@ void	algo(t_push_swap *ps)
 {
 	int	i;
 	int	j;
-	int	n;
 
 	i = -1;
 	while (++i < ps->bit && !is_tried(ps->a, ps->len))
@@ -278,7 +277,6 @@ void	algo(t_push_swap *ps)
 				ps_ra(ps);
 			else
 				ps_pb(ps);
-		n = j;
 		j = count_stack(ps->b, ps->len);
 		while (j-- > 0)
 			if ((ps->b[0] >> i) != 0)
@@ -291,7 +289,15 @@ void	algo(t_push_swap *ps)
 
 void	free_ps(t_push_swap *ps)
 {
+	int	i;
+
+	i = -1;
 	free(ps->nbrs);
+	if (ps->arg != NULL)
+		while (ps->arg[++i] != NULL)
+			free(ps->arg[i]);
+	if (ps->arg != NULL)
+		free(ps->arg);
 	free(ps->a);
 	free(ps->b);
 }
@@ -299,19 +305,23 @@ void	free_ps(t_push_swap *ps)
 int	main(int argc, char **argv)
 {
 	t_push_swap	ps;
-	int			i;
 
-	i = -1;
-	ps.len = argc - 1;
+	ps.arg = NULL;
 	if (argc > 2)
 	{
-		if (argc > 2)
-			ps.nbrs = chars_to_ints(ps.len, argv + 1);
+		ps.len = argc - 1;
+		ps.nbrs = chars_to_ints(ps.len, argv + 1);
 		if (!ps.nbrs)
 			return (0);
 	}
 	else 
-		return (0);
+	{
+		ps.arg = ft_split(argv[1], ' ');
+		ps.len = array_len(ps.arg);
+		ps.nbrs = chars_to_ints(ps.len, ps.arg);
+		if (!ps.nbrs)
+			return (0);
+	}
 	if (check_dup(ps.nbrs , ps.len))
 	{
 		free(ps.nbrs);

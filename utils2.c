@@ -41,3 +41,13 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	ret[i] = 0;
 	return (ret);
 }
+
+int	array_len(void *array)
+{
+	int	i;
+
+	i = 0;
+	while (((char **)array)[i] != NULL)
+		i++;
+	return (i);
+}

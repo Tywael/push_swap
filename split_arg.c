@@ -55,7 +55,7 @@ static void	*ft_freearray(char **array, int i)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char*s, char c)
 {
 	char	**array;
 	int		blockcount;
@@ -64,7 +64,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	blockcount = ft_blockcount((char *)s, c);
+	blockcount = ft_blockcount(s, c);
 	array = (char **)malloc((blockcount + 1) * sizeof(char *));
 	if (!array)
 		return (NULL);
@@ -72,17 +72,12 @@ char	**ft_split(char const *s, char c)
 	{
 		while (*s == c && *s != '\0')
 			s++;
-		array[i] = ft_substr((char *)s, 0, ft_blocklen((char *)s, c));
+		array[i] = ft_substr(s, 0, ft_blocklen(s, c));
 		if (!array[i])
 			return (ft_freearray(array, i));
-		s = s + ft_blocklen((char *)s, c);
+		s = s + ft_blocklen(s, c);
 		i++;
 	}
 	array[i] = NULL;
 	return (array);
-}
-
-char	**pars(char *arg)
-{
-	
 }

@@ -23,6 +23,7 @@ typedef struct s_push_swap
 	int	*b;
 	int	len;
 	int	move;
+	char	**arg;
 	int	bit;
 }				t_push_swap;
 
@@ -33,6 +34,10 @@ int		ft_strlen(const char *str);
 int		count_stack(int *nbrs, int len);
 void	shift_up(int *nbrs, int len);
 void	shift_down(int *nbrs, int len);
+int		array_len(void *array);
+char	**ft_split(char* s, char c);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+int	ft_isdigit(int c);
 void	ps_sa(t_push_swap *ps);
 void	ps_sb(t_push_swap *ps);
 void	ps_ss(t_push_swap *ps);

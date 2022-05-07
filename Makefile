@@ -18,13 +18,14 @@ SRC	=	push_swap.c\
 		ps_move1.c\
 		ps_move2.c\
 		ps_move3.c\
+		split_arg.c\
 
 OBJ =	$(SRC:.c=.o)
 
 CC =	gcc
 RM =	rm -f
 
-CFLAGS =	-Wall -Wextra -g
+CFLAGS =	-Wall -Wextra -g -fsanitize=address
 
 all:	$(NAME)
 
