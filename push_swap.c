@@ -103,11 +103,10 @@ void	shift_down(int *nbrs, int len)
 	//int	tmp;
 
 	//tmp = len;
-	if (len > 1 && !nbrs[len - 1])
+	if (len > 1)
 	{
 		while (--len)
 			nbrs[len] = nbrs[len - 1];
-		nbrs[0] = 0;
 	}
 }
 
@@ -116,32 +115,32 @@ void	shift_up(int *nbrs, int len)
 	int	i;
 
 	i = -1;
-	if (len > 1 && !nbrs[0])
+	if (len > 1)
 	{
 		while (++i < len - 1)
 			nbrs[i] = nbrs[i + 1];
-		nbrs[len - 1] = 0;
 	}
 }
 
 int	ft_perror(void)
 {
 	write(1, "Error\n", 6);
+	exit(1);
 	return (1);
 }
 
 int	check_max_min(char *str, int isneg)
 {
-	if (*(str + 0) > 2 + 48)
-		if (*(str + 1) > 1 + 48)
-			if (*(str + 2) > 4 + 48)
-				if (*(str + 3) > 7 + 48)
-					if (*(str + 4) > 4 + 48)
-						if (*(str + 5) > 8 + 48)
-							if (*(str + 6) > 3 + 48)
-								if (*(str + 7) > 6 + 48)
-									if (*(str + 8) > 4 + 48)
-										if (*(str + 9 ) > 7 + isneg + 48)
+	if (*(str + 0) >= 2 + 48)
+		if (*(str + 1) >= 1 + 48)
+			if (*(str + 2) >= 4 + 48)
+				if (*(str + 3) >= 7 + 48)
+					if (*(str + 4) >= 4 + 48)
+						if (*(str + 5) >= 8 + 48)
+							if (*(str + 6) >= 3 + 48)
+								if (*(str + 7) >= 6 + 48)
+									if (*(str + 8) >= 4 + 48)
+										if (*(str + 9 ) >= 7 + isneg + 48)
 											return (1);
 	return (0);
 }
@@ -178,9 +177,10 @@ int	*chars_to_ints(int len, char **arstr)
 		return (NULL);
 	while (++i < len)
 	{
-		if (ft_strlen(arstr[i]) > 10 + (*arstr[i] == '-') || num_validity(arstr[i]))
+		if (ft_strlen(arstr[i]) > 10 + (*(arstr[i]) == '-') || num_validity(arstr[i]))
 		{
 			free(nbrs);
+			ft_perror();
 			return (NULL);
 		}
 		nbrs[i] = ft_atoi(arstr[i]);
@@ -314,6 +314,8 @@ int	main(int argc, char **argv)
 		if (!ps.nbrs)
 			return (0);
 	}
+	else if (argc == 1)
+		exit(1);
 	else 
 	{
 		ps.arg = ft_split(argv[1], ' ');
