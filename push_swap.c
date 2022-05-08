@@ -30,7 +30,7 @@ void	bit_decal(t_push_swap *ps)
 
 	i = 0;
 	nbr = ps->len;
-	while (nbr / 2 > 1)
+	while (nbr / 2 >= 1)
 	{
 		nbr /= 2;
 		i++;
@@ -117,7 +117,7 @@ void	shift_up(int *nbrs, int len)
 	i = -1;
 	if (len > 1)
 	{
-		while (++i < len - 1)
+		while (++i < len)
 			nbrs[i] = nbrs[i + 1];
 	}
 }
@@ -278,11 +278,9 @@ void	algo(t_push_swap *ps)
 			else
 				ps_pb(ps);
 		j = count_stack(ps->b, ps->len);
+		printf("%i\n", i);
 		while (j-- > 0)
-			if ((ps->b[0] >> i) != 0)
-				ps_pa(ps);
-			else
-				ps_rb(ps);
+			ps_pa(ps);
 	}
 	all_a(ps);
 }
