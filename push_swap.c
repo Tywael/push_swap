@@ -278,7 +278,6 @@ void	algo(t_push_swap *ps)
 			else
 				ps_pb(ps);
 		j = count_stack(ps->b, ps->len);
-		printf("%i\n", i);
 		while (j-- > 0)
 			ps_pa(ps);
 	}
