@@ -30,7 +30,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	size_t	len;
 
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	ret = malloc(len + 1);
+	ret = ft_calloc(len + 1, sizeof(char));
 	if (!ret)
 		return (0);
 	i = 0;
@@ -50,4 +50,21 @@ int	array_len(void *array)
 	while (((char **)array)[i] != NULL)
 		i++;
 	return (i);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	char	*s;
+	size_t	i;
+
+	i = 0;
+	s = (char *)malloc(count * size);
+	if (s == NULL)
+		return (NULL);
+	while (i < count * size)
+	{
+		*(s + i) = 0;
+		i++;
+	}
+	return ((void *)s);
 }

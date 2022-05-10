@@ -25,11 +25,11 @@ void	ps_rrr(t_push_swap *ps)
 		temp = ps->a[size_a - 1];
 		ps->a[size_a - 1] = 0;
 		shift_down(ps->a, ps->len);
-		ps->a[0] = temp; 
+		ps->a[0] = temp;
 		temp = ps->b[size_b - 1];
 		ps->b[size_b - 1] = 0;
 		shift_down(ps->b, ps->len);
-		ps->b[0] = temp; 
+		ps->b[0] = temp;
 		ps->move++;
 		write(1, "rrr\n", 4);
 	}

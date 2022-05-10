@@ -74,7 +74,7 @@ void	ps_pb(t_push_swap *ps)
 {	
 	if (ps->a[0])
 	{
-		shift_down(ps->b,ps->len);
+		shift_down(ps->b, ps->len);
 		ps->b[0] = ps->a[0];
 		ps->a[0] = 0;
 		shift_up(ps->a, ps->len);

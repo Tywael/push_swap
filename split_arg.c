@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
 
 int	ft_blockcount(char const *s, char c)
@@ -65,7 +64,7 @@ char	**ft_split(char*s, char c)
 	if (!s)
 		return (NULL);
 	blockcount = ft_blockcount(s, c);
-	array = (char **)malloc((blockcount + 1) * sizeof(char *));
+	array = (char **)ft_calloc((blockcount + 1), sizeof(char *));
 	if (!array)
 		return (NULL);
 	while (blockcount--)

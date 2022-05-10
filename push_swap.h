@@ -18,13 +18,13 @@
 
 typedef struct s_push_swap
 {
-	int	*nbrs;
-	int	*a;
-	int	*b;
-	int	len;
-	int	move;
+	int		*nbrs;
+	int		*a;
+	int		*b;
+	int		len;
+	int		move;
 	char	**arg;
-	int	bit;
+	int		bit;
 }				t_push_swap;
 
 int		print_arr(char *str, int *nbrs, int len);
@@ -35,9 +35,10 @@ int		count_stack(int *nbrs, int len);
 void	shift_up(int *nbrs, int len);
 void	shift_down(int *nbrs, int len);
 int		array_len(void *array);
-char	**ft_split(char* s, char c);
+char	**ft_split(char *s, char c);
 char	*ft_substr(char *s, unsigned int start, size_t len);
-int	ft_isdigit(int c);
+int		ft_isdigit(int c);
+void	*ft_calloc(size_t count, size_t size);
 void	ps_sa(t_push_swap *ps);
 void	ps_sb(t_push_swap *ps);
 void	ps_ss(t_push_swap *ps);

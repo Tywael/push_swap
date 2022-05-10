@@ -48,7 +48,7 @@ int	all_a(t_push_swap *ps)
 	return (0);
 }
 
-int is_revtried(int	*nbrs, int len)
+int	is_revtried(int	*nbrs, int len)
 {
 	int	i;
 
@@ -91,18 +91,17 @@ int	count_stack(int *nbrs, int len)
 	i = -1;
 	n = 0;
 	while (++i < len)
+	{
 		if (nbrs[i])
 			n++;
 		else
 			break ;
+	}
 	return (n);
 }
 
 void	shift_down(int *nbrs, int len)
 {
-	//int	tmp;
-
-	//tmp = len;
 	if (len > 1)
 	{
 		while (--len)
@@ -145,7 +144,7 @@ int	check_max_min(char *str, int isneg)
 	return (0);
 }
 
-int	num_validity(char *str)
+int	num_val(char *str)
 {
 	int	isneg;
 
@@ -172,12 +171,13 @@ int	*chars_to_ints(int len, char **arstr)
 	int	i;
 
 	i = -1;
-	nbrs = (int *)malloc(len * sizeof(*nbrs));
+	nbrs = (int *)ft_calloc(len + 1, sizeof(*nbrs));
 	if (!nbrs)
 		return (NULL);
 	while (++i < len)
 	{
-		if (ft_strlen(arstr[i]) > 10 + (*(arstr[i]) == '-') || num_validity(arstr[i]))
+		if (ft_strlen(arstr[i]) > 10 + (*(arstr[i]) == '-')
+			|| num_val(arstr[i]))
 		{
 			free(nbrs);
 			ft_perror();
@@ -207,7 +207,7 @@ int	*format_ints(int *nbrs, int len)
 	int	i;
 
 	i = -1;
-	a = (int *)malloc(len * sizeof(*a));
+	a = (int *)ft_calloc(len + 1, sizeof(int));
 	if (!a)
 		return (NULL);
 	while (++i < len)
@@ -219,7 +219,7 @@ int	*init_b(int len)
 {
 	int	*nbrs;
 
-	nbrs = (int *)malloc(sizeof(int) * len);
+	nbrs = (int *)ft_calloc(len + 1, sizeof(int));
 	if (!nbrs)
 		return (NULL);
 	return (nbrs);

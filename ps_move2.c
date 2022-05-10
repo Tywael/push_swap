@@ -52,7 +52,7 @@ void	ps_rr(t_push_swap *ps)
 
 	size_a = count_stack(ps->a, ps->len);
 	size_b = count_stack(ps->b, ps->len);
-	if(size_a > 1 && size_b > 1)
+	if (size_a > 1 && size_b > 1)
 	{	
 		temp = ps->b[0];
 		shift_up(ps->b, ps->len);

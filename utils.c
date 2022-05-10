@@ -21,7 +21,7 @@ int	skipspace(char c)
 
 int	ft_strlen(const char *str)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	while (*str++)
@@ -61,7 +61,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	size_t	j;
 	char	*str;
 
-	str = (char*)malloc(sizeof(*s) * (len + 1));
+	str = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!str)
 		return (NULL);
 	i = 0;
