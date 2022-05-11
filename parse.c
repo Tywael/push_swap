@@ -23,7 +23,7 @@ int	check_max_min(char *str, int isneg)
 							if (*(str + 6) >= 3 + 48)
 								if (*(str + 7) >= 6 + 48)
 									if (*(str + 8) >= 4 + 48)
-										if (*(str + 9) >= 7 + isneg + 48)
+										if (*(str + 9) >= 8 + isneg + 48)
 											return (1);
 	return (0);
 }
