@@ -34,3 +34,24 @@ void	ps_rrr(t_push_swap *ps)
 		write(1, "rrr\n", 4);
 	}
 }
+
+void	shift_down(int *nbrs, int len)
+{
+	if (len > 1)
+	{
+		while (--len)
+			nbrs[len] = nbrs[len - 1];
+	}
+}
+
+void	shift_up(int *nbrs, int len)
+{
+	int	i;
+
+	i = -1;
+	if (len > 1)
+	{
+		while (++i < len)
+			nbrs[i] = nbrs[i + 1];
+	}
+}

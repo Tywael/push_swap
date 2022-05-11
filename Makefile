@@ -19,6 +19,9 @@ SRC	=	push_swap.c\
 		ps_move2.c\
 		ps_move3.c\
 		split_arg.c\
+		algo.c\
+		parse.c\
+		check.c\
 
 OBJ =	$(SRC:.c=.o)
 
