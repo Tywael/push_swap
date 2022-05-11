@@ -43,9 +43,9 @@ int	algo_5(t_push_swap *ps)
 	int	i;
 
 	i = -1;
-	while (++i < ps->len)
+	while (++i < ps->len && count_stack(ps->b, ps->len) < 2)
 	{
-		if (ps->a[0] == 4 || ps->a[0] == 5)
+		if (ps->a[0] == 1 || ps->a[0] == 2)
 			ps_pb(ps);
 		else
 			ps_ra(ps);
@@ -55,8 +55,6 @@ int	algo_5(t_push_swap *ps)
 		ps_sb(ps);
 	ps_pa(ps);
 	ps_pa(ps);
-	ps_ra(ps);
-	ps_ra(ps);
 	return (0);
 }
 
